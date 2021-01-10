@@ -1,4 +1,3 @@
-/* eslint-disable consistent-return */
 class LinkedList {
   constructor() {
     this.head = null;
@@ -36,6 +35,21 @@ class LinkedList {
       curNode = curNode.next;
     }
     return null;
+  }
+
+  deleteHead() {
+    if (!this.head) {
+      return;
+    }
+    const deleteItem = this.head;
+
+    if (this.head.next) {
+      this.head = this.head.next;
+    } else {
+      this.head = null;
+      this.tail = null;
+    }
+    return deleteItem;
   }
 
   delete(value) {

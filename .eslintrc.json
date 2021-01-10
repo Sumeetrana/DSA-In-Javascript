@@ -26,6 +26,7 @@
     "array-bracket-spacing": 0,
     "import/no-named-as-default": 0,
     "implicit-arrow-linebreak": 0,
-    "linebreak-style": ["error", "windows"]
+    "linebreak-style": ["error", "windows"],
+    "consistent-return": true
   }
 }
