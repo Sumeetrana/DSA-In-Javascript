@@ -1,40 +1,42 @@
-class Edge {
-  constructor(src, nbr, wt) {
-    this.src = src;
-    this.nbr = nbr;
-    this.wt = wt;
-  }
-}
-
 class Graph {
-  constructor() {
-    this.graph = [];
+  constructor(noOfVertices) {
+    this.noOfVertices = noOfVertices;
+    this.adjList = new Map();
   }
-  add(src, nbr, wt) {
-    this.graph.push(new Edge(src, nbr, wt));
+
+  addVertex(v) {
+    this.adjList.set(v, []);
+  }
+
+  addEdge(v, w) {
+    this.adjList.get(v).push(w);
+    this.adjList.get(w).push(v);
+  }
+
+  printGraph() {
+    let get_keys = this.adjList.keys();
+    for (let i of get_keys) {
+      let get_values = this.adjList.get(i);
+      let conc = '';
+      for (let j of get_values) {
+        conc += j + ' ';
+      }
+      console.log(i + ' -> ' + conc);
+    }
   }
 }
 
-let graph = new Graph();
-graph.add(0, 3, 40);
-graph.add(0, 1, 10);
+const graph = new Graph(6);
+let vertices = [0, 1, 2, 3, 4, 5, 6];
+for (let i = 0; i < graph.noOfVertices; i++) {
+  graph.addVertex(vertices[i]);
+}
 
-graph.add(1, 0, 10);
-graph.add(1, 2, 10);
-
-graph.add(2, 3, 10);
-graph.add(2, 1, 10);
-
-graph.add(3, 0, 40);
-graph.add(3, 2, 10);
-graph.add(3, 4, 2);
-
-graph.add(4, 3, 2);
-graph.add(4, 5, 3);
-graph.add(4, 6, 3);
-
-graph.add(5, 4, 3);
-graph.add(5, 6, 3);
-
-graph.add(6, 5, 3);
-graph.add(6, 4, 8);
+graph.addEdge(0, 2);
+graph.addEdge(0, 3);
+graph.addEdge(1, 2);
+graph.addEdge(2, 3);
+graph.addEdge(3, 5);
+graph.addEdge(3, 4);
+graph.addEdge(4, 5);
+graph.printGraph();
