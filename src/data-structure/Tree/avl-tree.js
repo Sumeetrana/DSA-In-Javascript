@@ -41,6 +41,13 @@ class AVL {
     return node.height;
   }
 
+  balancingFactor(node) {
+    if (node === null) {
+      return 0;
+    }
+    return height(node.left) - height(node.right);
+  }
+
   rightRotation(c) {
     let b = c.left;
     let T3 = b.right;
